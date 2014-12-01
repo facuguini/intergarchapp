@@ -1,0 +1,81 @@
+<html ng-app="intergarchapp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Intergarchapp</title>
+	<link rel="stylesheet" href="css/Inter.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<script src="js/lib/jquery-1.11.1.min.js"></script>
+	<script src="js/lib/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/angular-touch.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/controllers/mainController.js"></script>
+	<script src="js/controllers/estadisticasController.js"></script>
+	<script src="js/controllers/proximaFechaController.js"></script>
+	<script src="js/controllers/jugadoresController.js"></script>
+</head>
+<body ng-controller="mainController">
+	<div data-role="page" data-theme="a">
+		<div data-role="panel" id="panel"> 
+			<h3>Navegador</h3>
+			<ul data-role="listview">
+				<li><a href="#est" ng-click="pageChanger('estadisticas')">Estadisticas</a></li>
+				<li><a href="#prox" ng-click="pageChanger('proxima')">Proxima Fecha</a></li>
+				<li><a href="#jug" ng-click="pageChanger('jugadores')">Jugadores</a></li>
+			</ul>
+		</div>
+
+		<div data-role="header" data-position="inline">
+			<a href="#panel" class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-left ui-btn-icon-notext"></a>
+			<h1>Intergarchapp</h1>
+			<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-refresh ui-btn-icon-left ui-btn-icon-notext" ng-click="refresh()"></a>
+		</div>
+
+		<div data-role="content" data-theme="a">
+			<div ng-controller="estadisticasController" ng-show="estshow">
+				<h2>Estadisticas</h2>
+				<iframe id="itable" scrolling="no" src="http://www.datafutbol.net/comunidad/campeonato/tablas/545#tabla-posiciones-1692" ng-show="iframeshow"></iframe>
+				<table data-role="table" id="my-table" data-mode="columntoggle" ng-show="!iframeshow">
+					<thead>
+						<tr>
+							<th> </th>
+							<th>Equipo</th>
+							<th>PJ</th>
+							<th>DG</th>
+							<th>Ptos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="equipo in equipos">
+							<td>{{equipo.posicion}}</td>
+							<td>{{equipo.nombre}}</td>
+							<td>{{equipo.pj}}</td>
+							<td>{{equipo.dg}}</td>
+							<td>{{equipo.ptos}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div ng-controller="proximaFechaController" ng-show="proxshow">
+				Prxoima Fecha
+			</div>
+			<div ng-controller="jugadoresController" ng-show="jugshow">
+				Jugadores
+			</div>
+		</div>
+
+		<div data-role="footer" data-theme="a" data-position="fixed">
+			<div ng-show="jugshow">
+				Cantidad jugadores: {{cantJugadores}}
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>
