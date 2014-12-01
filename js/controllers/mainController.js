@@ -19,6 +19,6 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 		}
 	}
 
-	
+	$scope.cantJugadores = 0;	
 
 }]);
