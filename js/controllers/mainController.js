@@ -1,5 +1,6 @@
 app.controller('mainController', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.pageChanger = function(page) {
+		localStorage.setItem("home", page);
 		switch (page) {
 			case "estadisticas":
 				$scope.estshow = true;
@@ -20,5 +21,5 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 	}
 
 	$scope.cantJugadores = 0;	
-
+	$scope.pageChanger(localStorage.getItem("home"))
 }]);

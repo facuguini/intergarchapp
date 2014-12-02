@@ -4,7 +4,6 @@ app.controller('estadisticasController', ['$scope', '$timeout', function($scope,
 	$("#itable").load(function(){
 		$(this).contents().find('.col1').each(function(i){
 			var equipo = {
-				posicion: i+1,
 				nombre: $(this).text,
 				pj: $(this).closest(".col2").text,
 				dg:$(this).closest(".col8").text,

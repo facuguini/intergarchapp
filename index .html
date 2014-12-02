@@ -51,7 +51,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="equipo in equipos">
-							<td>{{equipo.posicion}}</td>
+							<td>{{$index+1}}</td>
 							<td>{{equipo.nombre}}</td>
 							<td>{{equipo.pj}}</td>
 							<td>{{equipo.dg}}</td>
@@ -80,9 +80,9 @@
 						<tr ng-repeat="jugador in jugadores">
 							<td><span ng-show="false">{{jugador._id}}</span>{{$index+1}}</td>
 							<td>{{jugador.Nombre}}</td>
-							<td>{{jugador.Checked}}</td>
-							<td><a href="#" class="ui-icon-check ui-btn-icon-notext" ng-click="post(jugador._id)"></a></td>
-							<td><a href="#" class="ui-icon-delete ui-btn-icon-notext" ng-click="post(jugador._id)"></a></td>
+							<td ng-click="check(jugador._id)">{{jugador.Checked}}</td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
