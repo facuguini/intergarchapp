@@ -18,7 +18,4 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 			break;
 		}
 	}
-
-	
-
 }]);
