@@ -9,6 +9,7 @@ app.controller('jugadoresController', ['$scope', '$http','$timeout', function($s
 			//$scope.error = status
 			localStorage.setItem("listajugadores", JSON.stringify($scope.jugadores))
 			contador()
+			$scope.$parent.ErrorDeConexion = null
 		}).
 		error(function(status){
 			$scope.jugadores = JSON.parse(localStorage.getItem("listajugadores"))
@@ -26,6 +27,17 @@ app.controller('jugadoresController', ['$scope', '$http','$timeout', function($s
 		error(function() {
 			console.log(2)
 		});
+	}
+
+	$scope.delete = function(id) {
+		$http.delete("http://itshare.ddns.net:9290/user/"+id).
+		success(function(data, status){
+			console.log(id+" eliminado." + "data: "+data + ", status: "+status)
+			get()
+		}).
+		error(function() {
+			console.log("data: "+data + ", status: "+status)
+		})
 	}
 
 	$scope.$parent.refresh = function() {
