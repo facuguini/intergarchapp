@@ -35,6 +35,7 @@
 		</div>
 
 		<div data-role="content" data-theme="a">
+
 			<div ng-controller="estadisticasController" ng-show="estshow">
 				<h2>Estadisticas</h2>
 				<iframe id="itable" scrolling="no" src="http://www.datafutbol.net/comunidad/campeonato/tablas/545#tabla-posiciones-1692" ng-show="iframeshow"></iframe>
@@ -50,7 +51,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="equipo in equipos">
-							<td>{{equipo.posicion}}</td>
+							<td>{{$index+1}}</td>
 							<td>{{equipo.nombre}}</td>
 							<td>{{equipo.pj}}</td>
 							<td>{{equipo.dg}}</td>
@@ -60,10 +61,32 @@
 				</table>
 			</div>
 			<div ng-controller="proximaFechaController" ng-show="proxshow">
-				Prxoima Fecha
+				<h2>Proxima Fecha</h2>
+                <img src="http://www.360sports.com.ar/images/horarios_domingos.jpg"/>
 			</div>
 			<div ng-controller="jugadoresController" ng-show="jugshow">
-				Jugadores
+				<h2>Jugadores</h2>
+				<table data-role="table" id="my-table" data-mode="columntoggle" ng-show="!iframeshow">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Nombre</th>
+							<th>¿Juega?</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="jugador in jugadores">
+							<td><span ng-show="false">{{jugador._id}}</span>{{$index+1}}</td>
+							<td>{{jugador.Nombre}}</td>
+							<td ng-click="check(jugador.Nombre, jugador.Checked)">{{jugador.Checked}}</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+
 			</div>
 		</div>
 
@@ -71,6 +94,7 @@
 			<div ng-show="jugshow">
 				Cantidad jugadores: {{cantJugadores}}
 			</div>
+			{{ErrorDeConexion}}
 		</div>
 	</div>
 
