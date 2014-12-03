@@ -9,3 +9,26 @@ img {
 	height: 100%;
 	width: 100%;
 }
+
+.zoom1 {
+	height: 150%;
+	width: 150%;
+}
+
+.zoom2 {
+	height: 200%;
+	width: 200%;
+}
+
+.delete {
+	color: red;
+	font-weight: bold;
+}
+
+.true {
+	color: green;
+}
+
+.false {
+	color: red;
+}

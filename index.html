@@ -19,16 +19,20 @@
 </head>
 <body ng-controller="mainController">
 	<div data-role="page" data-theme="a">
-		<div data-role="panel" id="panel"> 
+		<div data-role="panel" id="panel" data-display="overlay"> 
 			<h3>Navegador</h3>
 			<ul data-role="listview">
-				<li><a href="#est" ng-click="pageChanger('estadisticas')">Estadisticas</a></li>
-				<li><a href="#prox" ng-click="pageChanger('proxima')">Proxima Fecha</a></li>
-				<li><a href="#jug" ng-click="pageChanger('jugadores')">Jugadores</a></li>
+				<li><a href="#est" ng-click="pageChanger('estadisticas')" data-rel="close">Estadisticas</a></li>
+				<li><a href="#prox" ng-click="pageChanger('proxima')" data-rel="close">Proxima Fecha</a></li>
+				<li><a href="#jug" ng-click="pageChanger('jugadores')" data-rel="close">Jugadores</a></li>
 			</ul>
+			<br><br>
+			<h3>Configuracion</h3>
+			<label for="autorefresh"> Segundos de actualizacion:</label>
+			<input type="number" data-mini="true" ng-model="autorefresh" id="autorefresh" ng-change="setAutorefresh()"/>
 		</div>
 
-		<div data-role="header" data-position="inline">
+		<div data-role="header" data-position="fixed">
 			<a href="#panel" class="ui-btn ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-left ui-btn-icon-notext"></a>
 			<h1>Intergarchapp</h1>
 			<a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-refresh ui-btn-icon-left ui-btn-icon-notext" ng-click="refresh()"></a>
@@ -62,15 +66,14 @@
 			</div>
 			<div ng-controller="proximaFechaController" ng-show="proxshow">
 				<h2>Proxima Fecha</h2>
-                <img src="http://www.360sports.com.ar/images/horarios_domingos.jpg"/>
+                <img src="http://www.360sports.com.ar/images/horarios_domingos.jpg" ng-class="{zoom1: zo, zoom2: zt}" ng-click="zoom()"/>
 			</div>
 			<div ng-controller="jugadoresController" ng-show="jugshow">
 				<h2>Jugadores</h2>
 				<form ng-submit="nuevo()">
-					<label for="nuevo">Text Input:</label>
-					<input type="text" name="name" id="nuevo" data-mini="true" ng-model="nombreNuevo"/>
+					<input type="text" data-mini="true" ng-model="nombreNuevo"/>
 				</form>
-				<table data-role="table" id="my-table" data-mode="columntoggle" ng-show="!iframeshow">
+				<table data-role="table" data-mode="columntoggle" ng-show="!iframeshow">
 					<thead>
 						<tr>
 							<th></th>
@@ -86,7 +89,7 @@
 							<td>{{jugador.Nombre}}</td>
 							<td ng-click="check(jugador.Nombre, jugador.Checked)">{{jugador.Checked}}</td>
 							<td></td>
-							<td ng-click="delete(jugador.Nombre)">Delete</td>
+							<td ng-click="delete(jugador.Nombre)" class="delete">Delete</td>
 						</tr>
 					</tbody>
 				</table>
@@ -95,10 +98,24 @@
 		</div>
 
 		<div data-role="footer" data-theme="a" data-position="fixed">
-			<div ng-show="jugshow">
-				Cantidad jugadores: {{cantJugadores}}
-			</div>
-			{{ErrorDeConexion}}
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<div ng-show="estshow">
+						<p> </p>
+					</div>
+					<div ng-show="proxshow">
+						Zoom: {{nZoom}}
+					</div>
+					<div ng-show="jugshow">
+						Cantidad jugadores: {{cantJugadores}}
+					</div>
+				</div>
+				<div class="ui-block-b">
+						{{ErrorDeConexion}}
+				</div>
+			</div><!-- /grid-a -->
+
+
 		</div>
 	</div>
 
